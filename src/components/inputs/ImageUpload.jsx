@@ -20,7 +20,7 @@ const ImageUpload = ({ onChange }) => {
         {preview ? (
           <img src={preview} alt="Preview" className="w-full h-auto" />
         ) : (
-          <span>Click to upload an image</span>
+          <span>Bir resim yüklemek için tıklayın</span>
         )}
       </label>
       <input

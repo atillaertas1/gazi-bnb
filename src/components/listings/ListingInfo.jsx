@@ -17,7 +17,6 @@ function ListingInfo({ userId, description, guestCount, roomCount, bathroomCount
   console.log("userId", userId);
   
 
-
   const token = localStorage.getItem('token'); 
 
 
@@ -31,7 +30,7 @@ function ListingInfo({ userId, description, guestCount, roomCount, bathroomCount
           setUser(userData); 
         }
       } catch (error) {
-        setError('Error fetching user data');
+        setError('Kullanıcı verileri alınırken hata oluştu');
       } finally {
         setLoading(false); 
       }
@@ -41,7 +40,7 @@ function ListingInfo({ userId, description, guestCount, roomCount, bathroomCount
   }, [userId, token]); 
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Yükleniyor...</div>;
   }
 
   if (error) {
@@ -54,19 +53,19 @@ function ListingInfo({ userId, description, guestCount, roomCount, bathroomCount
       <div className='flex flex-col gap-2'>
         <div className='text-xl font-semibold flex flex-row items-center gap-2'>
           <div>
-            {user ? `Hosted by ${user.username}` : 'Hosted by unknown user'}
+            {user ? `${user.username} tarafından yönetilmektedir` : 'Bilinmeyen kullanıcı tarafından yönetilmektedir'}
           </div>
           <Avatar src={user ? "/profile.png" : "/default-avatar.png"}/>
         </div>
         <div className='flex flex-row items-center gap-4 font-light text-neutral-500'>
           <div>
-            {guestCount} guests
+            {guestCount} misafir
           </div>
           <div>
-            {roomCount} rooms
+            {roomCount} oda
           </div>
           <div>
-            {bathroomCount} bathrooms
+            {bathroomCount} banyo
           </div>
         </div>
       </div>

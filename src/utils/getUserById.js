@@ -9,7 +9,7 @@ export const getUserById = async (userId, token) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Error fetching user data:', error);
+    console.error('Kullanıcı verileri alınırken hata oluştu:', error);
     throw error; 
   }
 };

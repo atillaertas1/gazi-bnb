@@ -31,7 +31,7 @@ function Input({
           errors[id] ? "focus:border-rose-500" : "focus:border-black"
         }`}
       />
-      <label className={`
+      <label className={` 
         absolute
         text-sm
         duration-150

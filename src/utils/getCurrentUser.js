@@ -5,7 +5,7 @@ const getCurrentUser = async () => {
     const token = localStorage.getItem('token');
 
     if (!token) {
-      console.log('No token found, user is not logged in');
+      console.log('Token bulunamadı, kullanıcı giriş yapmamış');
       return null;
     }
 
@@ -19,9 +19,9 @@ const getCurrentUser = async () => {
 
   } catch (error) {
     if (error.response && error.response.status === 401) {
-      console.log('Unauthorized access - token might be invalid or expired');
+      console.log('Yetkisiz erişim - token geçersiz veya süresi dolmuş olabilir');
     }
-    console.error('Error fetching current user:', error.message);
+    console.error('Mevcut kullanıcı alınırken hata oluştu:', error.message);
     return null;
   }
 };

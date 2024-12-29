@@ -16,13 +16,13 @@ function Counter({ title, subtitle, value, onChange }) {
 
   return (
     <div className="flex flex-row items-center justify-between gap-4">
-      {/* Title ve Subtitle alanı */}
+      {/* Başlık ve Alt Başlık alanı */}
       <div className="flex flex-col">
         <div className="font-medium">{title}</div>
         <div className="font-light text-gray-600">{subtitle}</div>
       </div>
 
-      {/* Counter alanı */}
+      {/* Sayıcı alanı */}
       <div className="flex flex-row items-center gap-4">
         <div
           onClick={onReduce}

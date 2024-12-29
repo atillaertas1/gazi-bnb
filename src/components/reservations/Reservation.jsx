@@ -23,7 +23,7 @@ function Reservation() {
           setError(null); 
           
           const userListings = await getListingsForUser(currentUser.id, localStorage.getItem('token'));
-          console.log("user listings", userListings);
+          console.log("Kullanıcı ilanları", userListings);
 
           const allReservations = [];
           userListings.forEach((listing) => {
@@ -37,10 +37,10 @@ function Reservation() {
             }
           });
 
-          console.log("all reservations", allReservations);
+          console.log("Tüm rezervasyonlar", allReservations);
           setReservations(allReservations);
         } catch (error) {
-          console.error('Error fetching user listings:', error.message);
+          console.error('Kullanıcı ilanları alınırken hata oluştu:', error.message);
           setError(error); 
         } finally {
           setIsLoading(false); 
@@ -52,51 +52,51 @@ function Reservation() {
   }, [currentUser]);
 
   const onCancel = useCallback((reservationId) => {
-    console.log('Attempting to cancel reservation with ID:', reservationId);
+    console.log('Rezervasyon iptali deneniyor, ID:', reservationId);
     const token = localStorage.getItem('token');
     cancelReservation(reservationId, token)
       .then(() => {
-        console.log('Reservation cancelled successfully, removing from UI:', reservationId);
+        console.log('Rezervasyon başarıyla iptal edildi, arayüzden kaldırılıyor:', reservationId);
         setReservations((prevReservations) =>
           prevReservations.filter((reservation) => reservation.id !== reservationId)
         );
       })
       .catch((error) => {
-        console.error('Error deleting reservation:', error);
+        console.error('Rezervasyon iptal edilirken hata oluştu:', error);
         setError(error);
       });
   }, []);
 
   if (!currentUser) {
-    console.log('No user logged in, showing unauthorized state');
-    return <EmptyState title="Unauthorized" subtitle="Please log in" />;
+    console.log('Giriş yapmış kullanıcı yok, yetkisiz durum gösteriliyor');
+    return <EmptyState title="Yetkisiz" subtitle="Lütfen giriş yapın" />;
   }
 
   if (isLoading) {
-    console.log('Reservations are loading...');
+    console.log('Rezervasyonlar yükleniyor...');
     return <Loading />;
   }
 
   if (reservations.length === 0) {
-    console.log('No reservations found for the user');
+    console.log('Kullanıcı için hiçbir rezervasyon bulunamadı');
     return (
       <EmptyState
-        title="No reservations found"
-        subtitle="Looks like you have no reservations on your property"
+        title="Hiç rezervasyon bulunamadı"
+        subtitle="Görünüşe göre mülkünüzde herhangi bir rezervasyon yok"
       />
     );
   }
 
 
   if (error) {
-    console.log('An error occurred while fetching reservations:', error.message);
+    console.log('Rezervasyonlar alınırken bir hata oluştu:', error.message);
     return <Error error={error} />;
   }
 
 
   return (
     <Container>
-      <Heading title="Reservations" subtitle="Bookings on your properties" />
+      <Heading title="Rezervasyonlar" subtitle="Mülklerinizdeki rezervasyonlar" />
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
         {reservations.map((reservation) => (
           <ListingCard
@@ -105,7 +105,7 @@ function Reservation() {
             reservation={reservation}
             actionId={reservation.id}
             onAction={onCancel}
-            actionLabel="Cancel guest reservation"
+            actionLabel="Misafir rezervasyonunu iptal et"
             currentUser={currentUser}
           />
         ))}

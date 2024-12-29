@@ -1,6 +1,6 @@
 import React from 'react'
 import { DateRange } from 'react-date-range'
-import { enUS } from 'date-fns/locale';
+import { tr } from 'date-fns/locale';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css'
@@ -17,7 +17,7 @@ function Calendar({value, onChange, disabledDates}) {
             showDateDisplay={false}
             minDate={new Date()}
             disabledDates={disabledDates}
-            locale={enUS}
+            locale={tr}
         />
     </div>
   )

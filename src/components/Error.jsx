@@ -3,11 +3,11 @@ import EmptyState from "./EmptyState";
 
 const Error = (error) => {
     useEffect(() => {
-        console.error(error);
+        console.error('Bir hata oluştu:', error);
     }, [error]); 
 
     return (
-        <EmptyState title="Uh oh" subtitle="Something went wrong!"/>
+        <EmptyState title="Hata" subtitle="Bir şeyler ters gitti!"/>
     )
 }
 

@@ -7,7 +7,7 @@ function CountrySelect({value, onChange}) {
   return (
     <div>
         <Select 
-            placeholder="Anywhere"
+            placeholder="Her yer"
             isClearable
             options={getAll()}
             value={value}

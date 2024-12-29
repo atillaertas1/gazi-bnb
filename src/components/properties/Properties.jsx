@@ -42,14 +42,14 @@ function Properties() {
       deleteListing(listingId, token)
         .then(() => {
           setListings((prevListings) => prevListings.filter((listing) => listing.id !== listingId));
-          toast.success('Property deleted successfully');
+          toast.success('Mülk başarıyla silindi');
         })
         .catch(() => {
-          toast.error('Error deleting property');
+          toast.error('Mülk silinirken bir hata oluştu');
         });
     } catch (err) {
-      console.error('Error deleting listing:', err.message);
-      toast.error('Unexpected error occurred');
+      console.error('Mülk silinirken bir hata oluştu:', err.message);
+      toast.error('Beklenmeyen bir hata oluştu');
     } finally {
       setDeletingId(null);
     }
@@ -60,11 +60,11 @@ function Properties() {
   }
 
   if (!currentUser) {
-    return <EmptyState title="Unauthorized" subtitle="Please log in" />;
+    return <EmptyState title="Yetkisiz" subtitle="Lütfen giriş yapın" />;
   }
 
   if (listings.length === 0) {
-    return <EmptyState title="No properties found" subtitle="Looks like you have no properties" />;
+    return <EmptyState title="Hiçbir mülk bulunamadı" subtitle="Görünüşe göre hiçbir mülkünüz yok" />;
   }
   if (error) {
     return <Error error={error} />;
@@ -72,7 +72,7 @@ function Properties() {
 
   return (
     <Container>
-      <Heading title="Properties" subtitle="List of your properties" />
+      <Heading title="Mülkler" subtitle="Mülklerinizin listesi" />
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
         {listings.map((listing) => (
           <ListingCard
@@ -81,7 +81,7 @@ function Properties() {
             actionId={listing.id}
             onAction={onCancel}
             disabled={deletingId === listing.id}
-            actionLabel="Delete property"
+            actionLabel="Mülkü sil"
             currentUser={currentUser}
           />
         ))}

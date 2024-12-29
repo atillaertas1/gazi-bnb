@@ -4,8 +4,8 @@ import Heading from './Heading';
 import Button from './Button';
 
 function EmptyState({
-  title = 'No exact matches',
-  subtitle = 'Try changing or removing some of your filters',
+  title = 'Tam eşleşme bulunamadı',
+  subtitle = 'Bazı filtreleri değiştirmeyi veya kaldırmayı deneyin',
   showReset,
 }) {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ function EmptyState({
         {showReset && (
           <Button
             outline
-            label="Remove all filters"
+            label="Tüm filtreleri kaldır"
             onClick={() => navigate('/')}
           />
         )}

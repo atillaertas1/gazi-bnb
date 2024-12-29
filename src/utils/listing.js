@@ -13,7 +13,7 @@ export const getListings = async () => {
     });
     return response.data;
   } catch (error) {
-    console.error('Error fetching listings:', error);
+    console.error('Listeleme verileri alınırken hata oluştu:', error);
     throw error; 
   }
 };
@@ -25,8 +25,8 @@ export const getListingsForUser = async (userId, token) => {
     });
     return response.data; 
   } catch (error) {
-    console.error('Error fetching listings:', error.response?.data || error.message);
-    throw new Error('Error fetching listings');
+    console.error('Kullanıcıya ait listelemeler alınırken hata oluştu:', error.response?.data || error.message);
+    throw new Error('Kullanıcıya ait listelemeler alınırken hata oluştu');
   }
 };
 
@@ -36,7 +36,7 @@ export const deleteListing = async (listingId, token) => {
       headers: { Authorization: `Bearer ${token}` },
     });
   } catch (error) {
-    throw new Error('Error deleting listing');
+    throw new Error('Listeleme silinirken hata oluştu');
   }
 };
 
@@ -49,16 +49,15 @@ export const getListingById = async (listingId, token) => {
     });
 
     if (!response.data) {
-      throw new Error('No data found for this listing');
+      throw new Error('Bu listeleme için veri bulunamadı');
     }
 
     return response.data;
   } catch (error) {
-    console.error(`Error fetching listing with ID ${listingId}:`, error.message);
+    console.error(`ID ${listingId} olan listeleme alınırken hata oluştu:`, error.message);
     throw error; 
   }
 };
-
 
 export const createListing = async (data, token) => {
   const formData = new FormData();
@@ -78,10 +77,8 @@ export const createListing = async (data, token) => {
   });
 
   if (!response.ok) {
-    throw new Error('Failed to create listing');
+    throw new Error('Listeleme oluşturulamadı');
   }
 
   return response.json();
 };
-
-

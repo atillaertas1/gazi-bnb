@@ -31,7 +31,7 @@ function UserMenu({ currentUser }) {
   const logout = () => {
     localStorage.removeItem('token');
     navigate(0);
-  }
+  };
 
   const goToTrips = () => {
     if (!currentUser) {
@@ -73,7 +73,7 @@ function UserMenu({ currentUser }) {
           onClick={onRent}
           className="hidden md:block text-sm font-semibold py-3 px-4 rounded-full hover:bg-neutral-100 transition cursor-pointer"
         >
-          Airbnb your home
+          Evinizi bizimle kiralayın
         </div>
         <div
           onClick={toggleOpen}
@@ -90,19 +90,19 @@ function UserMenu({ currentUser }) {
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
-                <MenuItem onClick={goToTrips} label={'My trips'} />
-                <MenuItem onClick={goToFavorites} label={'My favorites'} />
-                <MenuItem onClick={goToReservations} label={'My reservations'} />
-                <MenuItem onClick={goToProperties} label={'My properties'} />
-                <MenuItem onClick={settingsModal.onOpen} label={'My Settings'} />
-                <MenuItem onClick={rentModal.onOpen} label={'Airbnb my home'} />
+                <MenuItem onClick={goToTrips} label={'Seyahatlerim'} />
+                <MenuItem onClick={goToFavorites} label={'Favorilerim'} />
+                <MenuItem onClick={goToReservations} label={'Rezervasyonlarım'} />
+                <MenuItem onClick={goToProperties} label={'Mülklerim'} />
+                <MenuItem onClick={settingsModal.onOpen} label={'Ayarlarım'} />
+                <MenuItem onClick={rentModal.onOpen} label={'Evim'} />
                 <hr />
-                <MenuItem onClick={logout} label={'Log out'} />
+                <MenuItem onClick={logout} label={'Çıkış Yap'} />
               </>
             ) : (
               <>
-                <MenuItem onClick={loginModal.onOpen} label={'Login'} />
-                <MenuItem onClick={registerModal.onOpen} label={'Sign up'} />
+                <MenuItem onClick={loginModal.onOpen} label={'Giriş Yap'} />
+                <MenuItem onClick={registerModal.onOpen} label={'Kayıt Ol'} />
               </>
             )}
           </div>

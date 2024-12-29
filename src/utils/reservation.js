@@ -11,7 +11,7 @@ export const getUserReservations = async (userId, token) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Error fetching reservations', error);
+    console.error('Rezervasyonlar alınırken hata oluştu', error);
     throw error;
   }
 };
@@ -28,7 +28,7 @@ export const cancelReservation = async (reservationId, token) => {
     );
     return response.data; 
   } catch (error) {
-    console.error('Error cancelling reservation', error);
+    console.error('Rezervasyon iptal edilirken hata oluştu', error);
     throw error;
   }
 };
@@ -44,13 +44,12 @@ export const getReservationsByListing = async (listingId, token) => {
     return response.data;
   } catch (error) {
     console.error(
-      `Error fetching reservations for listing ${listingId}:`,
+      `Listeleme ${listingId} için rezervasyonlar alınırken hata oluştu:`,
       error.message
     );
     throw error;
   }
 };
-
 
 export const createReservation = async (reservationData, token) => {
   try {
@@ -61,8 +60,7 @@ export const createReservation = async (reservationData, token) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Error creating reservation:', error);
+    console.error('Rezervasyon oluşturulurken hata oluştu:', error);
     throw error;
   }
 };
-

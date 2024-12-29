@@ -76,14 +76,14 @@ function ListingCard({
         <div className="font-semibold text-lg">
           {location
             ? `${location.region}, ${location.label}`
-            : 'Unknown Location'}
+            : 'Bilinmeyen Konum'}
         </div>
         <div className="font-light text-neutral-500">
           {reservationDate || data.category}
         </div>
         <div className="flex flex-row items-center gap-1">
-          <div className="font-semibold">${price}</div>
-          {!reservation && <div className="font-light">night</div>}
+          <div className="font-semibold">₺{price}</div>
+          {!reservation && <div className="font-light">gece</div>}
           {onAction && actionLabel && (
             <Button
               disabled={disabled}

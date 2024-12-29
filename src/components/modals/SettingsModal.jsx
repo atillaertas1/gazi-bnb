@@ -27,7 +27,7 @@ function SettingsModal() {
   const onSubmit = async (data) => {
     const token = localStorage.getItem("token");
     if (!token) {
-      toast.error("You must be logged in to update settings.");
+      toast.error("Ayarları güncellemek için giriş yapmış olmalısınız.");
       return;
     }
 
@@ -38,11 +38,11 @@ function SettingsModal() {
       if(updatedUser){
         setCurrentUser(null);
       }
-      toast.success("Settings updated successfully!");
+      toast.success("Ayarlar başarıyla güncellendi!");
 
       settingsModal.onClose();
     } catch (error) {
-      toast.error(error.message || "Something went wrong.");
+      toast.error(error.message || "Bir şeyler ters gitti.");
     } finally {
       setIsLoading(false);
     }
@@ -50,10 +50,10 @@ function SettingsModal() {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Update Your Settings" subtitle="Change your username and password" />
+      <Heading title="Ayarlarınızı Güncelleyin" subtitle="Kullanıcı adınızı ve şifrenizi değiştirin" />
       <Input
         id="username"
-        label="Username"
+        label="Kullanıcı Adı"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -62,7 +62,7 @@ function SettingsModal() {
       <Input
         id="password"
         type="password"
-        label="Password"
+        label="Şifre"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -75,8 +75,8 @@ function SettingsModal() {
     <Modal
       disabled={isLoading}
       isOpen={settingsModal.isOpen}
-      title="Settings"
-      actionLabel={isLoading ? "Updating..." : "Update"}
+      title="Ayarlar"
+      actionLabel={isLoading ? "Güncelleniyor..." : "Güncelle"}
       onClose={settingsModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}

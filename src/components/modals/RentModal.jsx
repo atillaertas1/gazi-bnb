@@ -81,7 +81,7 @@ function RentModal() {
 
     const token = localStorage.getItem('token');
     if (!token) {
-      toast.error('You must be logged in to create a listing.');
+      toast.error('İlan oluşturmak için giriş yapmalısınız.');
       return;
     }
 
@@ -112,24 +112,24 @@ function RentModal() {
         <Error error={error} />;
       }
 
-      toast.success('Listing created!');
+      toast.success('İlan oluşturuldu!');
       reset();
       setStep(STEPS.CATEGORY);
       rentModal.onClose();
       navigate(0);
     } catch (error) {
-      setError(error.message || 'Something went wrong.');
+      setError(error.message || 'Bir şeyler yanlış gitti.');
     } finally {
       setIsLoading(false);
     }
   };
 
   const actionLabel = useMemo(() => {
-    return step === STEPS.PRICE ? 'Create' : 'Next';
+    return step === STEPS.PRICE ? 'Oluştur' : 'İleri';
   }, [step]);
 
   const secondaryActionLabel = useMemo(() => {
-    return step === STEPS.CATEGORY ? undefined : 'Back';
+    return step === STEPS.CATEGORY ? undefined : 'Geri';
   }, [step]);
 
   let bodyContent;
@@ -142,7 +142,7 @@ function RentModal() {
     if (step === STEPS.CATEGORY) {
       bodyContent = (
         <div className="flex flex-col gap-8">
-          <Heading title="Pick a category" />
+          <Heading title="Bir kategori seçin" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
             {categories.map((item) => (
               <div key={item.label}>
@@ -158,41 +158,39 @@ function RentModal() {
         </div>
       );
     } else if (step === STEPS.LOCATION) {
-      // Fallback in case location.latlng is not available yet
       const mapCenter = location?.latlng || [0, 0];
 
       bodyContent = (
         <div className="flex flex-col gap-8">
-          <Heading title="Where is your place located?" />
+          <Heading title="Yeriniz nerede?" />
           <CountrySelect
             value={location}
             onChange={(value) => {
-              setCustomValue('location', value); // This updates the form state
+              setCustomValue('location', value);
             }}
           />
-          {/* Haritaya key ekleyerek her güncellemede yeniden render edilmesini sağlıyoruz */}
           <Map key={location?.latlng?.join(',')} center={mapCenter} />
         </div>
       );
     } else if (step === STEPS.INFO) {
       bodyContent = (
         <div className="flex flex-col gap-8">
-          <Heading title="Describe your place" />
+          <Heading title="Mekanınızı tanımlayın" />
           <Counter
-            title="Guests"
-            subtitle="alt başlığı ayarlarsın"
+            title="Misafirler"
+            subtitle="kaç misafir"
             value={guestCount}
             onChange={(value) => setCustomValue('guestCount', value)}
           />
           <Counter
-            title="Rooms"
-            subtitle="alt başlığı ayarlarsın"
+            title="Odalar"
+            subtitle="kaç oda"
             value={roomCount}
             onChange={(value) => setCustomValue('roomCount', value)}
           />
           <Counter
-            title="Bathrooms"
-            subtitle="alt başlığı ayarlarsın"
+            title="Banyolar"
+            subtitle="kaç banyo"
             value={bathroomCount}
             onChange={(value) => setCustomValue('bathroomCount', value)}
           />
@@ -201,24 +199,24 @@ function RentModal() {
     } else if (step === STEPS.IMAGES) {
       bodyContent = (
         <div className="flex flex-col gap-8">
-          <Heading title="Add a photo" />
+          <Heading title="Bir fotoğraf ekleyin" />
           <ImageUpload onChange={(file) => setCustomValue('imageFile', file)} />
         </div>
       );
     } else if (step === STEPS.DESCRIPTION) {
       bodyContent = (
         <div className="flex flex-col gap-8">
-          <Heading title="Describe your place" />
+          <Heading title="Mekanınızı tanımlayın" />
           <Input
             id="title"
-            label="Title"
+            label="Başlık"
             register={register}
             errors={errors}
             required
           />
           <Input
             id="description"
-            label="Description"
+            label="Açıklama"
             register={register}
             errors={errors}
             required
@@ -228,10 +226,10 @@ function RentModal() {
     } else if (step === STEPS.PRICE) {
       bodyContent = (
         <div className="flex flex-col gap-8">
-          <Heading title="Set your price" />
+          <Heading title="Fiyatınızı belirleyin" />
           <Input
             id="price"
-            label="Price"
+            label="Fiyat"
             type="number"
             register={register}
             errors={errors}
@@ -250,7 +248,7 @@ function RentModal() {
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
-      title="Create your listing"
+      title="İlanınızı oluşturun"
       body={bodyContent}
     />
   );

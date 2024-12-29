@@ -20,7 +20,7 @@ function ListingHead({ title, locationValue, imageSrc, id, currentUser }) {
         subtitle={`${location?.region}, ${location?.label}`}
       />
       <div className="w-full h-[60vh] overflow-hidden rounded-xl relative">
-        <img alt='property' src={finalPath} className="object-cover w-full" />
+        <img alt='mülk' src={finalPath} className="object-cover w-full" />
         <div className="absolute top-5 right-5">
           <HeartButton listingId={id} currentUser={currentUser} />
         </div>

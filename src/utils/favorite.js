@@ -18,7 +18,7 @@ export const addFavorite = async (userId, listingId, token) => {
     );
     return response.data; 
   } catch (error) {
-    console.error('Error adding favorite', error);
+    console.error('Favori ekleme hatası', error);
     throw error;
   }
 };
@@ -35,7 +35,7 @@ export const removeFavorite = async (userId, listingId, token) => {
     );
     return response.data; 
   } catch (error) {
-    console.error('Error removing favorite', error);
+    console.error('Favori kaldırma hatası', error);
     throw error;
   }
 };
@@ -52,7 +52,7 @@ export const getFavorites = async (userId, token) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Error getting favorites', error);
+    console.error('Favorileri getirme hatası', error);
     throw error;
   }
 };

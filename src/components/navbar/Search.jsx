@@ -21,7 +21,7 @@ function Search() {
     if (locationValue) {
       return getByValue(locationValue).label;
     }
-    return 'Anywhere';
+    return 'Herhangi bir yer';
   }, [getByValue, locationValue]);
 
   const durationLabel = useMemo(() => {
@@ -34,18 +34,18 @@ function Search() {
         diff = 1;
       }
 
-      return `${diff} Days`;
+      return `${diff} Gün`;
     }
 
-    return 'Any Week';
+    return 'Herhangi bir hafta';
   }, [startDate, endDate]);
 
   const guestLabel = useMemo(() => {
     if (guestCount) {
-      return `${guestCount} Guests`;
+      return `${guestCount} Misafir`;
     }
 
-    return 'Add Guests';
+    return 'Misafir Ekle';
   }, [guestCount]);
 
   return (

@@ -40,7 +40,7 @@ function Favorite() {
 
   if (!currentUser) {
     console.log('No user logged in, showing unauthorized state');
-    return <EmptyState title="Unauthorized" subtitle="Please log in" />;
+    return <EmptyState title="Yetkisiz" subtitle="Lütfen giriş yapın" />;
   }
 
   if (loading) {
@@ -61,8 +61,8 @@ function Favorite() {
   if (favoriteListings.length === 0) {
     return (
       <EmptyState
-        title="No favorites found"
-        subtitle="Looks like you have no favorite listings"
+        title="Favori bulunamadı"
+        subtitle="Görünüşe göre favori bir ilanınız yok"
       />
     );
   }
@@ -70,8 +70,8 @@ function Favorite() {
   return (
     <Container>
       <Heading
-        title="Favorites"
-        subtitle="List of places you have favorited!"
+        title="Favoriler"
+        subtitle="Favori ilanlarınız!"
       />
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
         {favoriteListings.map((listing) => { 

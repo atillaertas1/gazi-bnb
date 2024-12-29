@@ -12,14 +12,12 @@ function HeartButton({ listingId }) {
   const [currentUser, setCurrentUser] = useState();
 
   useEffect(() => {
-    async function fetchCurrentUser () {
-        const response = await getCurrentUser();
-        setCurrentUser(response);
+    async function fetchCurrentUser() {
+      const response = await getCurrentUser();
+      setCurrentUser(response);
     }
     fetchCurrentUser();
-  },[])
-
-  
+  }, []);
 
   useEffect(() => {
     if (currentUser && currentUser.favorites) {
@@ -33,7 +31,7 @@ function HeartButton({ listingId }) {
   const toggleFavorite = async () => {
     const token = localStorage.getItem('token');
     if (!token) {
-      console.error('No token found');
+      console.error('Token bulunamadı');
       return;
     }
 
@@ -48,8 +46,8 @@ function HeartButton({ listingId }) {
       }
       setHasFavorited((prev) => !prev);
     } catch (error) {
-      console.error('Error toggling favorite', error);
-      setError(error); 
+      console.error('Favori durumu değiştirilirken bir hata oluştu', error);
+      setError(error);
     } finally {
       setIsLoading(false);
     }

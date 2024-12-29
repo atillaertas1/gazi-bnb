@@ -47,10 +47,10 @@ function RegisterModal() {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title={'Welcome to Gazibnb'} subtitle={'Create an account'} />
+      <Heading title={'Gazibnb\'ye Hoş Geldiniz'} subtitle={'Hesap oluşturun'} />
       <Input
         id="email"
-        label="Email"
+        label="E-posta"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -58,7 +58,7 @@ function RegisterModal() {
       />
       <Input
         id="username"
-        label="Name"
+        label="Ad"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -67,7 +67,7 @@ function RegisterModal() {
       <Input
         id="password"
         type="password"
-        label="Password"
+        label="Şifre"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -81,12 +81,12 @@ function RegisterModal() {
       <hr />
       <div className="text-neutral-500 text-center mt-4 font-light">
         <div className="justify-center flex flex-row items-center gap-2">
-          <div>Already have an account?</div>
+          <div>Zaten bir hesabınız var mı?</div>
           <div
             onClick={toggle}
             className="text-neutral-800 cursor-pointer hover:underline"
           >
-            Log in
+            Giriş yap
           </div>
         </div>
       </div>
@@ -97,8 +97,8 @@ function RegisterModal() {
     <Modal
       disabled={isLoading}
       isOpen={registerModal.isOpen}
-      title={'Register'}
-      actionLabel={'Continue'}
+      title={'Kayıt Ol'}
+      actionLabel={'Devam et'}
       onClose={registerModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}

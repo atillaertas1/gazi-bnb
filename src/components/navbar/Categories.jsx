@@ -3,94 +3,93 @@ import Container from '../Container';
 import { TbBeach, TbMountain, TbPool } from 'react-icons/tb';
 import { GiBarn, GiBoatFishing, GiCactus, GiCastle, GiCaveEntrance, GiForestCamp, GiIsland, GiWindmill } from 'react-icons/gi';
 import { MdOutlineVilla } from 'react-icons/md';
-import { FaSkiing } from 'react-icons/fa'
-import { BsSnow } from 'react-icons/bs'
-import { IoDiamond } from 'react-icons/io5'
+import { FaSkiing } from 'react-icons/fa';
+import { BsSnow } from 'react-icons/bs';
+import { IoDiamond } from 'react-icons/io5';
 import CategoryBox from '../CategoryBox';
 import { useLocation, useSearchParams } from 'react-router-dom';
 
 export const categories = [
   {
-    label: 'Beach',
+    label: 'Plaj',
     icon: TbBeach,
-    description: 'This property is close to the beach!',
+    description: 'Bu mülk plaja yakın!',
   },
   {
-    label: 'Windmills',
+    label: 'Yel Değirmenleri',
     icon: GiWindmill,
-    description: 'This property has windmills!',
+    description: 'Bu mülkte yel değirmenleri var!',
   },
   {
     label: 'Modern',
     icon: MdOutlineVilla,
-    description: 'This property is modern!',
+    description: 'Bu mülk modern!',
   },
   {
-    label: 'Countryside',
+    label: 'Kırsal Bölge',
     icon: TbMountain,
-    description: 'This property is in the countryside!',
+    description: 'Bu mülk kırsal bölgede!',
   },
   {
-    label: 'Pools',
+    label: 'Havuzlar',
     icon: TbPool,
-    description: 'This property has a pool!',
+    description: 'Bu mülkte havuz var!',
   },
   {
-    label: 'Islands',
+    label: 'Adalar',
     icon: GiIsland,
-    description: 'This property is on an island!',
+    description: 'Bu mülk bir adada!',
   },
   {
-    label: 'Lake',
+    label: 'Göl',
     icon: GiBoatFishing,
-    description: 'This property is close to a lake!',
+    description: 'Bu mülk göle yakın!',
   },
   {
-    label: 'Skiing',
+    label: 'Kayak',
     icon: FaSkiing,
-    description: 'This property has a skiing activities!',
+    description: 'Bu mülkte kayak aktiviteleri var!',
   },
   {
-    label: 'Castles',
+    label: 'Kaleler',
     icon: GiCastle,
-    description: 'This property is in a castle!',
+    description: 'Bu mülk bir kalede!',
   },
   {
-    label: 'Camping',
+    label: 'Kamp',
     icon: GiForestCamp,
-    description: 'This property has camping activities!',
+    description: 'Bu mülkte kamp aktiviteleri var!',
   },
   {
-    label: 'Arctic',
+    label: 'Arktik',
     icon: BsSnow,
-    description: '!',
+    description: 'Bu mülk Arktik bölgesinde!',
   },
   {
-    label: 'Cave',
+    label: 'Mağara',
     icon: GiCaveEntrance,
-    description: '!',
+    description: 'Bu mülk bir mağarada!',
   },
   {
-    label: 'Desert',
+    label: 'Çöl',
     icon: GiCactus,
-    description: '!',
+    description: 'Bu mülk çölde!',
   },
   {
-    label: 'Barns',
+    label: 'Ahırlar',
     icon: GiBarn,
-    description: '!',
+    description: 'Bu mülk ahırlarda!',
   },
   {
-    label: 'Lux',
+    label: 'Lüks',
     icon: IoDiamond,
-    description: '!',
+    description: 'Bu mülk lüks!',
   },
-
 ];
 
 function Categories() {
   const [params] = useSearchParams();
-  const category = params.get('category')
+  const category = params.get('category');
   const location = useLocation();
   const pathName = location.pathname;
 

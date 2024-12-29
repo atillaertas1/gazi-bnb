@@ -25,7 +25,7 @@ function Trips() {
       getUserReservations(currentUser.id, token)
         .then((data) => {
           setReservations(data);
-          console.log("Reservations:", data);
+          console.log("Rezervasyonlar:", data);
 
           const fetchListings = data.map((reservation) => {
             if (reservation.listingId) {
@@ -38,7 +38,7 @@ function Trips() {
                 })
                 .catch((listingError) => {
                   console.error(
-                    `Error fetching listing for reservation ID ${reservation.id}:`,
+                    `Rezervasyon ID ${reservation.id} için ilan alınırken hata oluştu:`,
                     listingError.message
                   );
                   setError(listingError);
@@ -50,7 +50,7 @@ function Trips() {
           Promise.all(fetchListings).finally(() => setIsLoading(false));
         })
         .catch((fetchError) => {
-          console.error('Error fetching reservations:', fetchError.message);
+          console.error('Rezervasyonlar alınırken hata oluştu:', fetchError.message);
           setError(fetchError);
           setIsLoading(false);
         });
@@ -59,22 +59,22 @@ function Trips() {
 
   const onCancel = useCallback((id) => {
     const token = localStorage.getItem('token');
-    console.log(`Attempting to cancel reservation with ID: ${id}`);
+    console.log(`Rezervasyon ID ${id} iptal edilmeye çalışılıyor.`);
     cancelReservation(id, token)
       .then(() => {
-        console.log(`Reservation with ID ${id} cancelled successfully.`);
+        console.log(`Rezervasyon ID ${id} başarıyla iptal edildi.`);
         setReservations((prevReservations) =>
           prevReservations.filter((reservation) => reservation.id !== id)
         );
       })
       .catch((cancelError) => {
-        console.error(`Error canceling reservation with ID ${id}:`, cancelError.message);
+        console.error(`Rezervasyon ID ${id} iptal edilirken hata oluştu:`, cancelError.message);
         setError(cancelError);
       });
   }, []);
 
   if (!currentUser) {
-    return <EmptyState title="Unauthorized" subtitle="Please login" />;
+    return <EmptyState title="Yetkilendirme yok" subtitle="Lütfen giriş yapın" />;
   }
 
   if (isLoading) {
@@ -88,26 +88,26 @@ function Trips() {
   if (reservations.length === 0) {
     return (
       <EmptyState
-        title="No trips found"
-        subtitle="Looks like you haven't reserved any trips"
+        title="Hiç seyahat bulunamadı"
+        subtitle="Henüz herhangi bir seyahat rezervasyonu yapmamışsınız gibi görünüyor"
       />
     );
   }
 
   return (
     <Container>
-      <Heading title="Trips" subtitle="Where you've been and where you're going" />
+      <Heading title="Seyahatler" subtitle="Nerelerde bulundunuz ve nereye gidiyorsunuz" />
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
         {reservations.map((reservation) => {
           const listing = listings[reservation.listingId]; // Doğru ilanı al
           return listing ? (
             <ListingCard
               key={reservation.id}
-              data={listing} // Listing bilgisini gönder
+              data={listing} // İlan bilgisini gönder
               reservation={reservation}
               actionId={reservation.id}
               onAction={onCancel}
-              actionLabel="Cancel reservation"
+              actionLabel="Rezervasyonu iptal et"
               currentUser={currentUser}
             />
           ) : (

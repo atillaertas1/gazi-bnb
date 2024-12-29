@@ -8,7 +8,7 @@ export const registerUser = async (data) => {
     const response = await axios.post('http://localhost:8080/api/users/register', data);
     return response.data; // Kayıt başarılı olduğunda dönecek veri
   } catch (error) {
-    throw new Error('Something went wrong.');
+    throw new Error('Bir şeyler yanlış gitti.');
   }
 };
 
@@ -21,7 +21,6 @@ export const loginUser = async (data) => {
     throw new Error('Kullanıcı adı veya şifre hatalı!');
   }
 };
-
 
 // Kullanıcı güncelleme fonksiyonu
 export const updateUser = async (userId, data, token) => {

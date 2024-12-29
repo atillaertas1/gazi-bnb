@@ -52,10 +52,10 @@ function LoginModal() {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title={'Welcome back'} subtitle={'Login to your account'} />
+      <Heading title={'Hoş geldiniz'} subtitle={'Hesabınıza giriş yapın'} />
       <Input
         id="username"
-        label="Username"
+        label="Kullanıcı Adı"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -64,7 +64,7 @@ function LoginModal() {
       <Input
         id="password"
         type="password"
-        label="Password"
+        label="Şifre"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -78,24 +78,24 @@ function LoginModal() {
       <hr />
       <Button
         outline
-        label={'Continue with Google'}
+        label={'Google ile devam et'}
         icon={FcGoogle}
         onClick={() => {}}
       />
       <Button
         outline
-        label={'Continue with Github'}
+        label={'Github ile devam et'}
         icon={AiFillGithub}
         onClick={() => {}}
       />
       <div className="text-neutral-500 text-center mt-4 font-light">
         <div className="justify-center flex flex-row items-center gap-2">
-          <div>First time using Airbnb?</div>
+          <div>İlk kez Airbnb kullanıyor musunuz?</div>
           <div
             onClick={toggle}
             className="text-neutral-800 cursor-pointer hover:underline"
           >
-            Create an account
+            Hesap oluştur
           </div>
         </div>
       </div>
@@ -106,8 +106,8 @@ function LoginModal() {
     <Modal
       disabled={isLoading}
       isOpen={loginModal.isOpen}
-      title={'Login'}
-      actionLabel={'Continue'}
+      title={'Giriş Yap'}
+      actionLabel={'Devam Et'}
       onClose={loginModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}

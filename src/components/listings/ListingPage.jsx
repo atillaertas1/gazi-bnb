@@ -52,12 +52,12 @@ function ListingPage() {
     const token = localStorage.getItem('token');
 
     if (!currentUser) {
-      console.log('User is not logged in, opening login modal');
+      console.log('Kullanıcı giriş yapmadı, giriş modali açılıyor');
       return loginModal.onOpen(); 
     }
 
     if (!token) {
-      console.error('No token found');
+      console.error('Token bulunamadı');
       return;
     }
 
@@ -74,13 +74,13 @@ function ListingPage() {
       token
     )
       .then(() => {
-        toast.success('Listing reserved!');
+        toast.success('İlan rezerve edildi!');
         setDateRange(initialDateRange);
         navigation(0);
       })
       .catch((error) => {
-        console.error('Error creating reservation:', error);
-        toast.error('Something went wrong.');
+        console.error('Rezervasyon oluşturulurken hata:', error);
+        toast.error('Bir şeyler ters gitti.');
       })
       .finally(() => {
         setIsLoading(false);
@@ -116,11 +116,11 @@ function ListingPage() {
           const location = listingData.location;
           setParsedLocation(location);
         } else {
-          console.error('No location value in response');
+          console.error('Yanıt içinde konum verisi yok');
         }
       } catch (error) {
-        setError('An error occurred while fetching the listing.');
-        console.error('Error fetching listing by ID:', error);
+        setError('İlan verileri alınırken bir hata oluştu.');
+        console.error('İlan ID ile getirilirken hata:', error);
       } finally {
         setLoading(false);
       }
@@ -137,7 +137,7 @@ function ListingPage() {
 
         setReservations(Array.isArray(reservationsData) ? reservationsData : []);
       } catch (error) {
-        console.error('Error fetching reservations:', error);
+        console.error('Rezervasyonlar alınırken hata:', error);
       }
     };
 
@@ -151,7 +151,7 @@ function ListingPage() {
   }, [listing?.category]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div>Yükleniyor...</div>;
   }
 
   if (error) {

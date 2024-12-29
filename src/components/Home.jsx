@@ -45,37 +45,18 @@ function Home() {
     const roomCount = params.get('roomCount');
     const bathroomCount = params.get('bathroomCount');
 
-    console.log(
-      locationValue,
-      startDate,
-      endDate,
-      guestCount,
-      roomCount,
-      bathroomCount
-    );
-
     let filtered = [...listings];
 
     if (category) {
       filtered = filtered.filter((listing) => {
-        const isCategoryMatch =
-          listing.category?.toLowerCase() === category.toLowerCase();
-        console.log(
-          `Category filter: Listing category "${listing.category}" matches with "${category}"? ${isCategoryMatch}`
-        );
-        return isCategoryMatch;
+        return listing.category?.toLowerCase() === category.toLowerCase();
       });
     }
 
     if (locationValue) {
       filtered = filtered.filter((listing) => {
-        const isLocationMatch =
-          listing.location?.value?.toString().toLowerCase() ===
+        return listing.location?.value?.toString().toLowerCase() ===
           locationValue.toString().toLowerCase();
-        console.log(
-          `Location filter: Listing location "${listing.location?.value}" matches with "${locationValue}"? ${isLocationMatch}`
-        );
-        return isLocationMatch;
       });
     }
 
@@ -84,44 +65,40 @@ function Home() {
       const parsedEndDate = parseISO(endDate);
       if (!isNaN(parsedStartDate) && !isNaN(parsedEndDate)) {
         filtered = filtered.filter((listing) => {
-          // Rezervasyonların tarihlerini kontrol et
           const hasConflict = listing.reservations.some((reservation) => {
             const reservationStart = new Date(reservation.startDate);
             const reservationEnd = new Date(reservation.endDate);
-            const isDateConflict =
-              reservationStart <= parsedEndDate &&
+            return reservationStart <= parsedEndDate &&
               reservationEnd >= parsedStartDate;
-            console.log(
-              `Date conflict: Reservation dates "${reservationStart}" to "${reservationEnd}" match with range "${parsedStartDate}" to "${parsedEndDate}"? ${isDateConflict}`
-            );
-            return isDateConflict;
           });
-
           return !hasConflict;
         });
-      } else {
-        console.error('Invalid date format in the query params');
       }
+    }
+
+    if (guestCount) {
+      filtered = filtered.filter((listing) => {
+        return listing.guestCount >= parseInt(guestCount, 10);
+      });
+    }
+
+    if (roomCount) {
+      filtered = filtered.filter((listing) => {
+        return listing.roomCount >= parseInt(roomCount, 10);
+      });
     }
 
     if (bathroomCount) {
       filtered = filtered.filter((listing) => {
-        const isBathroomCountMatch =
-          listing.bathroomCount >= parseInt(bathroomCount, 10);
-        console.log(
-          `Bathroom count filter: Listing bathroom count "${listing.bathroomCount}" matches with "${bathroomCount}"? ${isBathroomCountMatch}`
-        );
-        return isBathroomCountMatch;
+        return listing.bathroomCount >= parseInt(bathroomCount, 10);
       });
-    } else {
-      console.log('bathroomCount', bathroomCount);
     }
 
     setFilteredListings(filtered);
   }, [params, listings]);
 
   if (currentUser === null) {
-    return <EmptyState title="Unauthorized" subtitle="Please log in" />;
+    return <EmptyState title="Yetkisiz" subtitle="Lütfen giriş yapın" />;
   }
 
   if (isLoading) {
@@ -135,8 +112,8 @@ function Home() {
   if (filteredListings.length === 0) {
     return (
       <EmptyState
-        title="No Listings Found"
-        subtitle="Try adjusting your filters"
+        title="Hiç Liste Bulunamadı"
+        subtitle="Filtrelerinizi ayarlamayı deneyin"
         showReset
       />
     );
