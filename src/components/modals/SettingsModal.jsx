@@ -7,11 +7,13 @@ import useSettingsModal from "../../hooks/useSettingsModal";
 import Input from "../inputs/Input";
 import Heading from "../Heading";
 import { updateUser } from "../../utils/auth";
+import { useNavigate } from 'react-router-dom';
 
 function SettingsModal() {
   const settingsModal = useSettingsModal();
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -41,6 +43,7 @@ function SettingsModal() {
       toast.success("Ayarlar başarıyla güncellendi!");
 
       settingsModal.onClose();
+      navigate("/");
     } catch (error) {
       toast.error(error.message || "Bir şeyler ters gitti.");
     } finally {

@@ -178,19 +178,19 @@ function RentModal() {
           <Heading title="Mekanınızı tanımlayın" />
           <Counter
             title="Misafirler"
-            subtitle="kaç misafir"
+            subtitle="Kaç misafir ağırlayabilir?"
             value={guestCount}
             onChange={(value) => setCustomValue('guestCount', value)}
           />
           <Counter
             title="Odalar"
-            subtitle="kaç oda"
+            subtitle="Kaç odası bulunmakta?"
             value={roomCount}
             onChange={(value) => setCustomValue('roomCount', value)}
           />
           <Counter
             title="Banyolar"
-            subtitle="kaç banyo"
+            subtitle="Kaç banyosu var?"
             value={bathroomCount}
             onChange={(value) => setCustomValue('bathroomCount', value)}
           />

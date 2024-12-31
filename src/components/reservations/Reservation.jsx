@@ -105,7 +105,7 @@ function Reservation() {
             reservation={reservation}
             actionId={reservation.id}
             onAction={onCancel}
-            actionLabel="Misafir rezervasyonunu iptal et"
+            actionLabel="İptal et"
             currentUser={currentUser}
           />
         ))}
